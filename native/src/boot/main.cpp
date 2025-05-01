@@ -5,15 +5,6 @@
 
 using namespace std;
 
-#ifdef USE_CRT0
-__BEGIN_DECLS
-int musl_vfprintf(FILE *stream, const char *format, va_list arg);
-int vfprintf(FILE *stream, const char *format, va_list arg) {
-    return musl_vfprintf(stream, format, arg);
-}
-__END_DECLS
-#endif
-
 static void print_formats() {
     for (int fmt = +FileFormat::GZIP; fmt < +FileFormat::LZOP; ++fmt) {
         fprintf(stderr, "%s ", fmt2name[(FileFormat) fmt]);
